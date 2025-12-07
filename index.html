@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Arab Silent CFW | نماذج التقديم</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- خط جميل (اختياري) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Cairo", system-ui, sans-serif;
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    /* شريط علوي */
+    header {
+      background: #b91c1c;
+      color: #f9fafb;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    header .title-main {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    header .subtitle {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    /* حاوية الصفحة */
+    .container {
+      max-width: 1100px;
+      margin: 24px auto 40px;
+      padding: 0 16px;
+    }
+
+    /* أزرار اختيار الوزارة */
+    .dept-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .dept-tab {
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      padding: 8px 14px;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all .15s ease;
+    }
+    .dept-tab span.icon { font-size: 16px; }
+    .dept-tab.active {
+      background: #b91c1c;
+      color: #f9fafb;
+      border-color: #7f1d1d;
+    }
+    .dept-tab:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    }
+
+    /* تخطيط القسم */
+    .dept-section {
+      display: none;
+      gap: 24px;
+      align-items: flex-start;
+      margin-top: 12px;
+    }
+    .dept-section.active { display: grid; }
+    @media (min-width: 900px) {
+      .dept-section {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.95fr);
+      }
+    }
+    @media (max-width: 899px) {
+      .dept-section {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    /* الكروت */
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 18px 18px 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      border: 1px solid #e5e7eb;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 11px;
+      border: 1px solid #fee2e2;
+      background: #fef2f2;
+      color: #7f1d1d;
+    }
+    h1, h2, h3 { margin: 0; }
+    h1 { font-size: 22px; color: #b91c1c; }
+    h2 { font-size: 18px; color: #b91c1c; margin-bottom: 6px; }
+    h3 { font-size: 16px; color: #111827; margin-bottom: 6px; }
+    p { margin: 4px 0 8px; font-size: 14px; }
+    ul {
+      margin: 4px 0 8px 0;
+      padding-left: 18px;
+      font-size: 14px;
+    }
+    li { margin-bottom: 4px; }
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .pill {
+      border-radius: 999px;
+      font-size: 11px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 3px 9px;
+    }
+    .pill.red {
+      background: #fee2e2;
+      border-color: #fecaca;
+      color: #7f1d1d;
+    }
+
+    /* القوانين */
+    .rules-header {
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #b91c1c;
+    }
+    .rules-block {
+      background: #fff7f7;
+      border-radius: 14px;
+      border: 1px solid #fecaca;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    .rules-title {
+      font-weight: 700;
+      color: #991b1b;
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+    .rule-num {
+      font-weight: 600;
+      color: #b91c1c;
+    }
+
+    /* النماذج */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    input, select, textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      padding: 8px 10px;
+      font-size: 14px;
+      background: #f9fafb;
+      transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #b91c1c;
+      box-shadow: 0 0 0 1px #fecaca;
+      background: #ffffff;
+    }
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+    .hint {
+      font-size: 11px;
+      color: #6b7280;
+    }
+    button {
+      margin-top: 8px;
+      border-radius: 999px;
+      border: none;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #b91c1c;
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+      background: #991b1b;
+    }
+    button:active { transform: translateY(0); box-shadow: none; }
+    .status {
+      font-size: 12px;
+      margin-top: 4px;
+      min-height: 18px;
+    }
+    .status.success { color: #16a34a; }
+    .status.error { color: #dc2626; }
+
+    .footer-note {
+      margin-top: 24px;
+      font-size: 12px;
+      text-align: center;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="title-main">Arab Silent CFW • نظام التقديم</div>
+    <div class="subtitle">خريطة ERLC • تقديم احترافي للوزارات داخل السيرفر</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- أزرار اختيار الوزارة -->
+  <div class="dept-tabs">
+    <button class="dept-tab active" data-target="health">
+      <span class="icon">🚑</span>
+      <span>وزارة الصحة (EMS + الدفاع المدني)</span>
+    </button>
+    <button class="dept-tab" data-target="police">
+      <span class="icon">👮‍♂️</span>
+      <span>وزارة الداخلية (الشرطة)</span>
+    </button>
+    <button class="dept-tab" data-target="cia">
+      <span class="icon">🕵️‍♂️</span>
+      <span>CIA • القسم الاستخباراتي</span>
+    </button>
+    <button class="dept-tab" data-target="media">
+      <span class="icon">📺</span>
+      <span>وزارة الإعلام</span>
+    </button>
+  </div>
+
+  <!-- =================== وزارة الصحة =================== -->
+  <section class="dept-section active" id="dept-health">
+    <!-- معلومات وقوانين -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h1>وزارة الصحة في Arab Silent CFW</h1>
+          <p style="font-size:13px;color:#6b7280;margin-top:4px;">
+            (الدفاع المدني + EMS) • مسؤولون عن إنقاذ الأرواح والتعامل مع الحرائق والحوادث الكبيرة داخل خريطة ERLC بطريقة منظمة واحترافية.
+          </p>
+        </div>
+        <div class="badge">
+          <span>فتح باب التقديم</span>
+          <span style="width:7px;height:7px;border-radius:999px;background:#22c55e;"></span>
+        </div>
+      </div>
+
+      <div class="pill-list">
+        <div class="pill red">Serious RP</div>
+        <div class="pill">إنقاذ الأرواح أولاً</div>
+        <div class="pill">احترام قوانين السيرفر</div>
+        <div class="pill">تنسيق مع الشرطة</div>
+      </div>
+
+      <hr style="margin:12px 0;border:none;border-top:1px dashed #e5e7eb;">
+
+      <div class="rules-header">📜 قوانين وزارة الصحة (EMS + الدفاع المدني)</div>
+
+      <div class="rules-block">
+        <div class="rules-title">✨ أعلى وأهم قانون</div>
+        <p>
+          <span class="rule-num">1)</span>
+          تنفيذ أوامر وزير الصحة ونائبه مباشرة وبدون نقاش.<br>
+          ▪ الوزير ونائبه هم السلطة العليا داخل القسم.<br>
+          ▪ مخالفة أوامرهم تعتبر مخالفة كبرى وقد تؤدي إلى <b>فصل أو باند فوري</b>.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">🔥 القوانين العامة للطوارئ</div>
+        <p>
+          <span class="rule-num">2)</span> الالتزام بالزي الرسمي والمعدات – يمنع العمل بالزي المدني.<br>
+          <span class="rule-num">3)</span> يمنع استخدام مركبات أو معدات الطوارئ لأغراض شخصية أو للتمشية.<br>
+          <span class="rule-num">4)</span> ممنوع دخول مناطق الاشتباك قبل تأمينها من الشرطة (سلامتك أولاً).<br>
+          <span class="rule-num">5)</span> احترام الجميع أثناء العمل – يمنع السب، السخرية، الاستفزاز أو الإهمال المتعمد.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">🚑 قسم EMS – المسعفين</div>
+        <p>
+          <span class="rule-num">6)</span> معالجة جميع المصابين دون تمييز أو انتقاء بلاغات.<br>
+          <span class="rule-num">7)</span> EMS جهة إسعافية وليست قتالية – يمنع التدخل في إطلاق النار أو المداهمات.<br>
+          <span class="rule-num">8)</span> الإنعاش يتم بعد تقييم حالة المصاب وليس بشكل عشوائي أو سريع فقط لإنهاء الـRP.<br>
+          <span class="rule-num">9)</span> يمنع إنعاش ضحية <b>RDM</b> – يتم توثيق الحالة ورفعها للإدارة لاتخاذ الإجراءات.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">🧯 قسم الدفاع المدني – Fire &amp; Rescue</div>
+        <p>
+          <span class="rule-num">10)</span> تقييم المخاطر قبل الدخول لأي مبنى مشتعل – سلامة الطاقم فوق كل شيء.<br>
+          <span class="rule-num">11)</span> استخدام أدوات الإطفاء بطريقة منظمة – يمنع رش الماء أو كسر الأبواب عشوائياً بدون هدف.<br>
+          <span class="rule-num">12)</span> الأولوية لإنقاذ الأرواح ثم حماية الممتلكات.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">💀 قوانين المصابين (Downed Players)</div>
+        <p>
+          <span class="rule-num">13)</span> يمنع إسقاط نفسك فقط للهروب من الـRP أو من المخالفة المرورية.<br>
+          <span class="rule-num">14)</span> يجب انتظار EMS وعدم عمل Respawn إلا بعد انتهاء الموقف أو إذن من الإدارة.<br>
+          <span class="rule-num">15)</span> التعاون مع المسعفين والدفاع المدني وعدم إزعاجهم أثناء أداء عملهم.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">⚠️ العقوبات</div>
+        <p>
+          🔴 مخالفة أوامر الوزير أو نائبه:<br>
+          ▪ خصم رتبة – فصل من القسم – باند من السيرفر (حسب شدة المخالفة).<br><br>
+          🔸 بقية المخالفات:<br>
+          ▪ تحذير شفهي / كتابي – إيقاف مؤقت – فصل من القسم عند التكرار.
+        </p>
+      </div>
+
+      <p style="font-size:13px;margin-top:10px;text-align:center;color:#374151;">
+        🔥 شكراً لانضباطك داخل وزارة الصحة Arab Silent CFW<br>
+        🚨 خدمتكم… أمانكم… مسؤوليتنا.
+      </p>
+    </div>
+
+    <!-- نموذج التقديم للصحة -->
+    <div class="card">
+      <div class="card-header">
+        <h2>نموذج التقديم على وزارة الصحة</h2>
+      </div>
+      <p class="hint">املأ البيانات بدقة. أي معلومات وهمية قد تؤدي لرفض الطلب.</p>
+
+      <form class="apply-form" data-department="وزارة الصحة - EMS + الدفاع المدني">
+        <label>اسمك الحقيقي</label>
+        <input type="text" name="realName" required>
+
+        <label>العمر</label>
+        <input type="number" name="age" min="10" max="60" required>
+
+        <label>اسمك في Roblox</label>
+        <input type="text" name="robloxName" required>
+
+        <label>حسابك في Discord</label>
+        <input type="text" name="discordTag" placeholder="مثال: Khalil#1234">
+
+        <label>هل تقبل الالتزام الكامل بالقوانين أعلاه؟</label>
+        <select name="rulesAgree" required>
+          <option value="">اختر إجابة</option>
+          <option value="نعم أوافق على جميع القوانين">نعم، أوافق على جميع القوانين</option>
+          <option value="لا أستطيع الالتزام الكامل">لا، لا أستطيع الالتزام الكامل</option>
+        </select>
+
+        <label>اذكر سبب رغبتك بالانضمام إلى وزارة الصحة</label>
+        <textarea name="reason" required></textarea>
+
+        <label>اذكر خبرتك السابقة في EMS / Fire (إن وجدت)</label>
+        <textarea name="experience" placeholder="سيرفرات سابقة – مهارات – عدد الساعات في ERLC"></textarea>
+
+        <button type="submit">إرسال طلب وزارة الصحة</button>
+        <div class="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- =================== وزارة الداخلية (الشرطة) =================== -->
+  <section class="dept-section" id="dept-police">
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h1>وزارة الداخلية – الشرطة</h1>
+          <p style="font-size:13px;color:#6b7280;margin-top:4px;">
+            مسؤولون عن حفظ الأمن، تنظيم المرور، ومتابعة الجرائم داخل خريطة ERLC بأسلوب Roleplay منظم ومحترم.
+          </p>
+        </div>
+        <div class="badge">
+          <span>استقبال طلبات جديدة</span>
+          <span style="width:7px;height:7px;border-radius:999px;background:#22c55e;"></span>
+        </div>
+      </div>
+
+      <div class="pill-list">
+        <div class="pill red">قوانين صارمة</div>
+        <div class="pill">احترام المدنيين</div>
+        <div class="pill">عدم الاست abuse</div>
+        <div class="pill">تقارير وتنظيم</div>
+      </div>
+
+      <hr style="margin:12px 0;border:none;border-top:1px dashed #e5e7eb;">
+
+      <div class="rules-header">📜 قوانين وزارة الداخلية (الشرطة)</div>
+
+      <div class="rules-block">
+        <div class="rules-title">✨ القيادة والأوامر</div>
+        <p>
+          <span class="rule-num">1)</span> تنفيذ أوامر وزير الداخلية، نائبه، وقائد الشرطة مباشرة.<br>
+          <span class="rule-num">2)</span> يمنع تماماً العصيان أو الجدال في وسط الموقف – النقاش بعد انتهاء الـRP في الرومات المخصصة.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">👮 التعامل مع اللاعبين</div>
+        <p>
+          <span class="rule-num">3)</span> احترام جميع المواطنين – يمنع السب، الاستفزاز، أو التهديد غير الـRP.<br>
+          <span class="rule-num">4)</span> يمنع الاعتقال أو التفتيش دون سبب منطقي أو RP واضح (ممنوع Random Arrest).<br>
+          <span class="rule-num">5)</span> استخدام القوة يكون بشكل تدريجي (تحذير كلامي → Tazer → سلاح ناري عند الضرورة القصوى).
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">🚔 الدوريات والمطاردات</div>
+        <p>
+          <span class="rule-num">6)</span> الالتزام بسرعة معقولة أثناء المطاردة وعدم التسبب بحوادث لا داعي لها.<br>
+          <span class="rule-num">7)</span> يمنع صدم المركبات بشكل متكرر أو متعمد إلا في حالات إيقاف خطر حقيقي (PIT محدود).<br>
+          <span class="rule-num">8)</span> يمنع ترك نقاط التفتيش أو البلاغات بدون سبب – التنظيم والتواجد مهمان.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">📂 التوثيق والعقوبات</div>
+        <p>
+          <span class="rule-num">9)</span> أي موقف كبير (مداهمة – مطاردة طويلة – استخدام قوة مميتة) يُفضّل توثيقه بالفيديو أو الصور.<br>
+          <span class="rule-num">10)</span> إساءة استخدام صلاحيات الشرطة (Abuse) قد تؤدي إلى فصل فوري وباند من القسم وربما من السيرفر.
+        </p>
+      </div>
+
+      <p style="font-size:13px;margin-top:10px;text-align:center;color:#374151;">
+        👮 الشرطة هنا لحماية السيرفر وليس لإزعاج اللاعبين – كن قدوة في تعاملك وانضباطك.
+      </p>
+    </div>
+
+    <!-- نموذج التقديم للشرطة -->
+    <div class="card">
+      <div class="card-header">
+        <h2>نموذج التقديم على وزارة الداخلية (الشرطة)</h2>
+      </div>
+      <p class="hint">يفضّل أن يكون لديك معرفة جيدة بقوانين السيرفر وبأساسيات القوانين الشرطية.</p>
+
+      <form class="apply-form" data-department="وزارة الداخلية - الشرطة">
+        <label>اسمك الحقيقي</label>
+        <input type="text" name="realName" required>
+
+        <label>العمر</label>
+        <input type="number" name="age" min="10" max="60" required>
+
+        <label>اسمك في Roblox</label>
+        <input type="text" name="robloxName" required>
+
+        <label>حسابك في Discord</label>
+        <input type="text" name="discordTag" placeholder="مثال: Khalil#1234">
+
+        <label>هل لديك خبرة في Roleplay الشرطي أو القوانين؟ صفها باختصار</label>
+        <textarea name="experience" required></textarea>
+
+        <label>كيف تتصرف لو زميلك خالف القوانين أمامك؟</label>
+        <textarea name="scenario" required></textarea>
+
+        <label>سبب رغبتك في الانضمام لقسم الشرطة</label>
+        <textarea name="reason" required></textarea>
+
+        <button type="submit">إرسال طلب وزارة الداخلية</button>
+        <div class="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- =================== CIA =================== -->
+  <section class="dept-section" id="dept-cia">
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h1>CIA – القسم الاستخباراتي</h1>
+          <p style="font-size:13px;color:#6b7280;margin-top:4px;">
+            قسم مختص بالتحري، جمع المعلومات، ومتابعة الجرائم المنظمة داخل السيرفر بأسلوب سري ومنظم بعيداً عن الفوضى.
+          </p>
+        </div>
+        <div class="badge">
+          <span>قبول محدود</span>
+          <span style="width:7px;height:7px;border-radius:999px;background:#fbbf24;"></span>
+        </div>
+      </div>
+
+      <div class="pill-list">
+        <div class="pill red">سرية عالية</div>
+        <div class="pill">تحقيقات وتحريات</div>
+        <div class="pill">تنسيق مع الشرطة</div>
+        <div class="pill">RP احترافي</div>
+      </div>
+
+      <hr style="margin:12px 0;border:none;border-top:1px dashed #e5e7eb;">
+
+      <div class="rules-header">📜 قوانين قسم CIA</div>
+
+      <div class="rules-block">
+        <div class="rules-title">✨ الثقة والانضباط</div>
+        <p>
+          <span class="rule-num">1)</span> تنفيذ أوامر قائد الـCIA ونائبه فوراً – القسم يعتمد على الثقة والسرية التامة.<br>
+          <span class="rule-num">2)</span> يمنع مشاركة المعلومات أو الخطط الداخلية مع أي لاعب خارج القسم حتى لو كان صديقك.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">🕵️‍♂️ أسلوب العمل</div>
+        <p>
+          <span class="rule-num">3)</span> يمنع التمثيل العشوائي لدور "جاسوس" أو "محقق" بدون مبرر RP واضح.<br>
+          <span class="rule-num">4)</span> ممنوع استخدام صلاحيات القسم للانتقام الشخصي أو لمضايقة اللاعبين.<br>
+          <span class="rule-num">5)</span> جمع الأدلة يتم بهدوء: تصوير – ملاحظات – تسجيل لوحات – مراقبة من بعيد دون إفساد الموقف.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">🤝 التنسيق مع الأقسام الأخرى</div>
+        <p>
+          <span class="rule-num">6)</span> يتم تسليم المخالفين إلى الشرطة وعدم تنفيذ العقوبة مكانهم.<br>
+          <span class="rule-num">7)</span> عند وجود عملية كبيرة، يتم التنسيق مع الشرطة ووزارة الصحة قبل البدء.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">⚠️ العقوبات</div>
+        <p>
+          <span class="rule-num">8)</span> أي خيانة للثقة أو تسريب للمعلومات = فصل فوري من القسم مع إمكانية الباند من السيرفر.<br>
+          <span class="rule-num">9)</span> تكرار استخدام صلاحيات القسم بشكل خاطئ يؤدي لسحب الرتبة نهائياً.
+        </p>
+      </div>
+
+      <p style="font-size:13px;margin-top:10px;text-align:center;color:#374151;">
+        🕵️ العمل داخل CIA ليس للـShow، بل للمحترفين فقط – إما احتراف أو لا مكان في القسم.
+      </p>
+    </div>
+
+    <!-- نموذج التقديم للـ CIA -->
+    <div class="card">
+      <div class="card-header">
+        <h2>نموذج التقديم على قسم CIA</h2>
+      </div>
+      <p class="hint">القبول في هذا القسم محدود جداً – ركّز في إجاباتك واظهر نضجك في الـRoleplay.</p>
+
+      <form class="apply-form" data-department="CIA - القسم الاستخباراتي">
+        <label>اسمك الحقيقي</label>
+        <input type="text" name="realName" required>
+
+        <label>العمر</label>
+        <input type="number" name="age" min="14" max="60" required>
+
+        <label>اسمك في Roblox</label>
+        <input type="text" name="robloxName" required>
+
+        <label>حسابك في Discord</label>
+        <input type="text" name="discordTag" placeholder="مثال: Khalil#1234">
+
+        <label>هل سبق وأن شاركت بقسم مخابرات / تحريات في سيرفرات أخرى؟ اذكرها</label>
+        <textarea name="experience" required></textarea>
+
+        <label>اكتب سيناريو قصير: كيف تراقب عصابة مشبوهة دون أن تفسد الـRP؟</label>
+        <textarea name="scenario" required></textarea>
+
+        <label>لماذا تعتقد أنك مناسب لقسم CIA بالتحديد؟</label>
+        <textarea name="reason" required></textarea>
+
+        <button type="submit">إرسال طلب قسم CIA</button>
+        <div class="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- =================== وزارة الإعلام =================== -->
+  <section class="dept-section" id="dept-media">
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h1>وزارة الإعلام – Arab Silent CFW</h1>
+          <p style="font-size:13px;color:#6b7280;margin-top:4px;">
+            مسؤولة عن الإعلانات الرسمية، تصوير الأحداث، إدارة منصات التواصل، وتلميع صورة السيرفر بطريقة محترفة ومرتبة.
+          </p>
+        </div>
+        <div class="badge">
+          <span>فريق مبدعين</span>
+          <span style="width:7px;height:7px;border-radius:999px;background:#22c55e;"></span>
+        </div>
+      </div>
+
+      <div class="pill-list">
+        <div class="pill red">إعلام رسمي فقط</div>
+        <div class="pill">منع الدراما</div>
+        <div class="pill">تصاميم + مونتاج</div>
+        <div class="pill">التزام بصورة السيرفر</div>
+      </div>
+
+      <hr style="margin:12px 0;border:none;border-top:1px dashed #e5e7eb;">
+
+      <div class="rules-header">📜 قوانين وزارة الإعلام</div>
+
+      <div class="rules-block">
+        <div class="rules-title">✨ الهوية الرسمية</div>
+        <p>
+          <span class="rule-num">1)</span> تنفيذ توجيهات وزير الإعلام ونائبه بخصوص شكل التصاميم وطريقة الكتابة.<br>
+          <span class="rule-num">2)</span> يمنع نشر أي إعلان أو تصميم يحمل شعار السيرفر دون موافقة المسؤول عن القسم.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">📢 المحتوى والنشر</div>
+        <p>
+          <span class="rule-num">3)</span> يمنع نشر أخبار أو إعلانات كاذبة أو مبالغ فيها بهدف لفت الانتباه فقط.<br>
+          <span class="rule-num">4)</span> يمنع استخدام منصات السيرفر للدخول في دراما أو مشاكل مع سيرفرات أخرى.<br>
+          <span class="rule-num">5)</span> الحفاظ على أسلوب محترم في جميع المنشورات – لا يوجد سب أو إساءة لأي لاعب أو إدارة.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">🎥 التصوير والتصميم</div>
+        <p>
+          <span class="rule-num">6)</span> عدم تصوير غرف خاصة أو محادثات داخل الديسكورد دون إذن الإدارة.<br>
+          <span class="rule-num">7)</span> الحفاظ على جودة معينة في المونتاج والتصميم – المحتوى يمثل السيرفر بالكامل.<br>
+          <span class="rule-num">8)</span> يمنع وضع ميوزك أو محتوى مسيء أو غير لائق داخل المقاطع الرسمية.
+        </p>
+      </div>
+
+      <div class="rules-block">
+        <div class="rules-title">⚠️ العقوبات</div>
+        <p>
+          <span class="rule-num">9)</span> نشر محتوى غير لائق أو يسيء للسيرفر = إزالة من القسم فوراً وقد يصل لباند.<br>
+          <span class="rule-num">10)</span> تسريب تصاميم أو خطط محتوى خاصة إلى خارج القسم يعتبر خيانة ثقة ويُعامل كمخالفة كبرى.
+        </p>
+      </div>
+
+      <p style="font-size:13px;margin-top:10px;text-align:center;color:#374151;">
+        🎨 الإعلام هو واجهة السيرفر – كن محترفاً في كل كلمة وتصميم تنشره باسم Arab Silent CFW.
+      </p>
+    </div>
+
+    <!-- نموذج التقديم لوزارة الإعلام -->
+    <div class="card">
+      <div class="card-header">
+        <h2>نموذج التقديم على وزارة الإعلام</h2>
+      </div>
+      <p class="hint">هذا القسم مناسب للمصممين، المونتاج، الكُتّاب، وأصحاب الأفكار الإبداعية.</p>
+
+      <form class="apply-form" data-department="وزارة الإعلام">
+        <label>اسمك الحقيقي</label>
+        <input type="text" name="realName" required>
+
+        <label>العمر</label>
+        <input type="number" name="age" min="13" max="60" required>
+
+        <label>اسمك في Roblox</label>
+        <input type="text" name="robloxName" required>
+
+        <label>حسابك في Discord</label>
+        <input type="text" name="discordTag" placeholder="مثال: Khalil#1234">
+
+        <label>الدور الذي تفضله داخل وزارة الإعلام</label>
+        <select name="mediaRole" required>
+          <option value="">اختر الدور</option>
+          <option value="مصمم جرافيك">مصمم جرافيك</option>
+          <option value="مونتير / محرر فيديو">مونتير / محرر فيديو</option>
+          <option value="كاتب إعلانات / سكربت">كاتب إعلانات / سكربت</option>
+          <option value="إدارة حسابات التواصل">إدارة حسابات التواصل</option>
+          <option value="دور آخر (يُشرح في الأسفل)">دور آخر (أشرح في خانة المهارات)</option>
+        </select>
+
+        <label>اذكر مهاراتك في التصميم / المونتاج / الكتابة</label>
+        <textarea name="skills" required></textarea>
+
+        <label>ضع روابط أعمالك السابقة (إن وجدت)</label>
+        <textarea name="links" placeholder="روابط صور، فيديوهات، أعمال في سيرفرات أخرى (اختياري)"></textarea>
+
+        <label>سبب رغبتك في الانضمام لوزارة الإعلام</label>
+        <textarea name="reason" required></textarea>
+
+        <button type="submit">إرسال طلب وزارة الإعلام</button>
+        <div class="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    يتم إرسال جميع الطلبات إلى روم مخصص في Discord لمراجعتها من قبل الإدارة.<br>
+    || @everyone ||
+  </div>
+
+</div>
+
+<script>
+  // ------------------------- تبديل الأقسام -------------------------
+  const tabs = document.querySelectorAll(".dept-tab");
+  const sections = {
+    health: document.getElementById("dept-health"),
+    police: document.getElementById("dept-police"),
+    cia: document.getElementById("dept-cia"),
+    media: document.getElementById("dept-media"),
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      const target = tab.getAttribute("data-target");
+      Object.keys(sections).forEach(key => {
+        sections[key].classList.toggle("active", key === target);
+      });
+    });
+  });
+
+  // ------------------------- إرسال التقديمات إلى Discord Webhook -------------------------
+  // 🔴 ضع رابط الويب هوك هنا
+  const WEBHOOK_URL = "ضع رابط الويب هوك هنا";
+  // ----------------------------------------------------------------
+
+  const forms = document.querySelectorAll(".apply-form");
+
+  forms.forEach(form => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const statusEl = form.querySelector(".status");
+      statusEl.textContent = "";
+      statusEl.className = "status";
+
+      const deptName = form.getAttribute("data-department");
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      const content =
+`📝 **طلب تقديم جديد – Arab Silent CFW**
+
+**القسم المطلوب:** ${deptName}
+
+**الاسم الحقيقي:** ${data.realName || "غير مذكور"}
+**العمر:** ${data.age || "غير مذكور"}
+**Roblox:** ${data.robloxName || "غير مذكور"}
+**Discord:** ${data.discordTag || "غير مذكور"}
+
+${data.rulesAgree ? "**الالتزام بالقوانين:** " + data.rulesAgree + "\\n\\n" : ""}${
+data.mediaRole ? "**الدور المطلوب في الإعلام:** " + data.mediaRole + "\\n" : ""}${
+data.skills ? "**المهارات:**\\n" + data.skills + "\\n\\n" : ""}${
+data.links ? "**أعمال سابقة / روابط:**\\n" + data.links + "\\n\\n" : ""}${
+data.experience ? "**الخبرة:**\\n" + data.experience + "\\n\\n" : ""}${
+data.scenario ? "**سيناريو توضيحي:**\\n" + data.scenario + "\\n\\n" : ""
+}**سبب الانضمام:** 
+${data.reason || "لم يذكر سبباً بعد."}
+
+|| @everyone ||`;
+
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ content })
+        });
+
+        if (res.ok) {
+          statusEl.textContent = "✅ تم إرسال طلبك بنجاح، شكراً لتقديمك!";
+          statusEl.classList.add("success");
+          form.reset();
+        } else {
+          statusEl.textContent = "❌ حدث خطأ أثناء الإرسال، تأكد من صحة رابط الويب هوك.";
+          statusEl.classList.add("error");
+        }
+      } catch (err) {
+        statusEl.textContent = "❌ تعذر الاتصال بالسيرفر، حاول مرة أخرى.";
+        statusEl.classList.add("error");
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
